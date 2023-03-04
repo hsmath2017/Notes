@@ -65,4 +65,80 @@
 \date{2023.3.4}
 \begin{document}
 \maketitle
+\section*{Statement}
+I would like to acknowledge the help from Huiteng Li.
+\section{Introduction}
+\begin{defn}
+For a fixed $\bar{x}\in [0,1]$, the \textbf{Green's function} $G(x;\bar{x})$ 
+is the function of $x$ that solves the BVP
+\begin{equation}
+    \label{GreenFunc_BVP}
+    \left\{
+        \begin{aligned}
+        &u''(x)=\delta(x-\bar{x});\\
+        &u(0)=u(1)=0,\\
+        \end{aligned}
+    \right.
+\end{equation}
+where $\delta(x-\bar{x})$ is the Dirac delta function.
+\end{defn}
+Discretize equation \eqref{GreenFunc_BVP}, then find the inverse of matrix
+\begin{equation}
+    \label{Discretized_Laplacian}
+    A=\frac{1}{h^2}\begin{bmatrix}
+        2&-1&&&&\\
+        -1&2&-1&&&\\
+        &\ddots&\ddots&\ddots&&\\
+        &&-1&2&-1&\\
+        &&&-1&2&\\
+    \end{bmatrix}
+\end{equation}
+by Green's function. In \eqref{Discretized_Laplacian}, for $n\times n$ matrix $A$, $h=\frac{1}{n+1}$. $A$ is \textbf{discretized Laplacian operator}. 
+\section{Discretize the dirac delta function}
+Dirac delta function isn't a usual continuous function, so we should find a new method to discretize it. In fact, when we discretize a function, we exactly find a \textbf{grid function} to approximate it. For delta function $\delta(x-\bar{x})$, it satisfies:
+\begin{itemize}
+    \item $\forall x\neq \bar{x}$, $\delta(x-\bar{x})=0$.
+    \item $\int_{-\infty}^{+\infty}\delta(x-\bar{x})\dif x=1$.
+\end{itemize}
+So, assume $\bar{x}=x_{j}$ is on the discretized grid set $X:=\left\{x_{j}\right\}_{j=1}^{n}$, the discretized grid function $\delta_{g}:X\rightarrow\mathbb{R}$ satisfies:
+\begin{itemize}
+    \item $\delta_{g}(x_{i})=\delta_{ij}$ while $\delta_{ij}$ is the Kronecker symbol.
+    \item $\|\delta_{g}\|_{1}=1$, $\|\cdot\|$ means the \textbf{q-norm} of grid function.
+\end{itemize}
+Then:
+\begin{equation}
+    \label{eq:discretized_delta}
+    \delta_{g}(x_{i})=\left\{
+        \begin{aligned}
+        &0, i\neq j;\\
+        &\frac{1}{h}, i=j.\\
+        \end{aligned}
+    \right.
+\end{equation}
+So, for $\bar{x}=x_{j}$, the discretized linear system for equation \eqref{GreenFunc_BVP} is:
+\begin{equation}
+    \label{eq:discretized_green_pde}
+    -AU=\frac{1}{h}e_{j}.
+\end{equation}
+When $h\rightarrow 0$, $\delta_{g}\rightarrow \delta$ and $A\rightarrow -\Delta$, so we can use \eqref{eq:discretized_green_pde} to discretize equation \eqref{GreenFunc_BVP}.
+\section{Inverse of discretized Laplacian operator}
+
+If we admit \eqref{eq:discretized_green_pde} has no truncated error, we can use green's function to derive the inverse of matrix $A$. For $B=A^{-1}$, mark $B=[b_{1},\cdots,b_{n}]$, we can see:
+\begin{equation}
+    Ab_{j}=e_{j}.
+\end{equation}
+If $U_{j}$ satisfies \eqref{eq:discretized_green_pde}, $b_{j}=-h U_{j}$.
+
+By the definition of green's function, when $\bar{x}=x_{j}$, the solution of equation \eqref{GreenFunc_BVP} is $G(x;x_{j})$. Its restriction operator on $X$ is $G(x_{i};x_{j})$. So, if truncated error $\tau=0$, we can see: 
+\begin{equation}
+    U_{j}=\begin{bmatrix}
+        G(x_{1};x_{j})\\
+        G(x_{2};x_{j})\\
+        \vdots\\
+        G(x_{n};x_{j})\\
+    \end{bmatrix}.
+\end{equation}
+So, if $B=A^{-1}$, we can see $b_{ij}=-hG(x_{i};x_{j})$. We can verify that $B$ is indeed the inverse of $A$.
+\section{Discussion}
+How to show \eqref{eq:discretized_green_pde} has no truncated error?
 \end{document}
