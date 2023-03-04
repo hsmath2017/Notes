@@ -1,0 +1,68 @@
+\documentclass{article}
+%\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{float}
+%\usepackage{algorithm}  
+%\usepackage{algorithmicx} 
+\usepackage[ruled,linesnumbered]{algorithm2e} 
+\usepackage{longtable}
+\usepackage{fancyhdr}
+\usepackage{appendix}
+\usepackage{enumitem}
+\usepackage{abstract}
+\usepackage{multirow}
+\pagestyle{fancy}
+\lfoot{}%这条语句可以让页码出现在下方
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem{eg}{Example}[section]
+\newcommand{\supp}{\text{supp}}
+\newcommand{\Rn}{\mathbb{R}^{n}}
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\difFrac}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\pdfFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\OFL}{\mathrm{OFL}}
+\newcommand{\UFL}{\mathrm{UFL}}
+\newcommand{\fl}{\mathrm{fl}}
+\newcommand{\op}{\odot}
+\newcommand{\cp}{\cdot}
+\newcommand{\Eabs}{E_{\mathrm{abs}}}
+\newcommand{\Erel}{E_{\mathrm{rel}}}
+\newcommand{\DR}{\mathcal{D}_{\widetilde{LN}}^{n}}
+\newcommand{\add}[2]{\sum_{#1=1}^{#2}}
+\newcommand{\innerprod}[2]{\left<#1,#2\right>}
+\newcommand\tbbint{{-\mkern -16mu\int}}
+\newcommand\tbint{{\mathchar '26\mkern -14mu\int}}
+\newcommand\dbbint{{-\mkern -19mu\int}}
+\newcommand\dbint{{\mathchar '26\mkern -18mu\int}}
+\newcommand\bint{
+{\mathchoice{\dbint}{\tbint}{\tbint}{\tbint}}
+}
+\newcommand\bbint{
+{\mathchoice{\dbbint}{\tbbint}{\tbbint}{\tbbint}}
+}
+\title{Green Function And Discretized Laplacian Operator}
+\author{Shuang Hu}
+\date{2023.3.4}
+\begin{document}
+\maketitle
+\end{document}
